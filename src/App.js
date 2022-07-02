@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <Logo>Pamoon</Logo>
+      <Logo img="band">Pamoon</Logo>
       <Template></Template>
     </>
   );
