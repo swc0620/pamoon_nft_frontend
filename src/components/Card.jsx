@@ -29,6 +29,8 @@ const Wrap=styled.div`
 `;
 
 function Card() {
+
+
   return (
     <Wrap>
       <img alt='img' src={process.env.PUBLIC_URL+'img.png'}></img>
