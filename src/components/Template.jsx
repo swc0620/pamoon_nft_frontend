@@ -6,7 +6,6 @@ import PamoonNFTArtifact from "../artifacts/PamoonNFT.json";
 import KIP17 from "../artifacts/KIP17.json";
 
 const Wrap=styled.div`
-  background-color:#F5F5F5;
   display:flex;
   flex-wrap:wrap;
   justify-content:space-evenly;
