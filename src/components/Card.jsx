@@ -28,15 +28,16 @@ const Wrap=styled.div`
   }
 `;
 
-function Card() {
-
-
+function Card(props) {
+  const img=props.img;
+  const wallet=props.wallet;
+  const number=props.number;
   return (
     <Wrap>
-      <img alt='img' src={process.env.PUBLIC_URL+'img.png'}></img>
+      <img alt='img' src={process.env.PUBLIC_URL+`${img}.png`}></img>
       <div className='text'>
-        <div className='wallet-address'>0xabcd</div>
-        <div className='token-number'>#1</div>
+        <div className='wallet-address'>{wallet}</div>
+        <div className='token-number'>#{number}</div>
       </div>
     </Wrap>
   )
