@@ -43,14 +43,14 @@ function Template() {
             // pamoon contract
             try{
               //index 0부터 시작한다고 가정했을때
-              const imgUrl=await pamoonContract.methods.tokenURI(cardId.current-4).call();
+              const imgUrl=await pamoonContract.methods.tokenURI(cardId.current-3).call();
               let imgData;
               fetch(imgUrl)
               .then(result => result.json())
               .then((output) => {
                 imgData=output.image
               }).catch(err => console.error(err));
-              const walletData= await pamoonContract.methods.ownerOf(cardId.current-4).call();
+              const walletData= await pamoonContract.methods.ownerOf(cardId.current-3).call();
               addCard(imgData,walletData)
             }catch{
               break;
