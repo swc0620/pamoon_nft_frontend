@@ -1,4 +1,4 @@
-import React,{useState,useRef,useEffect,useCallback} from 'react'
+import React,{useState,useRef,useEffect} from 'react'
 import styled from 'styled-components'
 import Card from './Card';
 import Caver from 'caver-js';
@@ -16,17 +16,10 @@ const Wrap=styled.div`
 function Template() {
   const [cards,setCards]=useState([]);
   const cardId=useRef(0);
-  const addCard=useCallback((img,wallet)=>{
-    const newItem={
-      id:cardId.current,
-      img,
-      wallet,
-    }
-    setCards([...cards,newItem]);
-    cardId.current+=1;
-  },[cards])
+
   useEffect(() => {
     const fetchData = async () => {
+      const cardArray=[]
       try {
         const caver = new Caver(process.env.REACT_APP_CYPRESS_URI);
         const krafterspaceContract = new caver.contract(KIP17.abi, process.env.REACT_APP_KRAFTERSPACE_CONTRACT_ADDRESS, { gasPrice: process.env.REACT_APP_GAS_PRICE });
@@ -38,7 +31,12 @@ function Template() {
             // krafterspace contract
             const imgData=await krafterspaceContract.methods.tokenURI(tokens[cardId.current]).call();
             const walletData= await krafterspaceContract.methods.ownerOf(tokens[cardId.current]).call();
-            addCard(imgData,walletData)
+            const newItem={
+              id:cardId.current,
+              img:imgData,
+              wallet:walletData,
+            }
+            cardArray.push(newItem)
           }else{
             // pamoon contract
             try{
@@ -51,18 +49,25 @@ function Template() {
                 imgData=output.image
               }).catch(err => console.error(err));
               const walletData= await pamoonContract.methods.ownerOf(cardId.current-3).call();
-              addCard(imgData,walletData)
+              const newItem={
+                id:cardId.current,
+                img:imgData,
+                wallet:walletData,
+              }
+              cardArray.push(newItem)
             }catch{
               break;
             }  
           }
+          cardId.current+=1;
         }
       } catch (e) {
         console.log(e);
       }
+      setCards(cardArray);
     }
     fetchData();
-  }, [addCard]);
+  }, []);
   return (
     <Wrap>
       {cards.map((card)=><Card key={card.id} img={card.token} wallet={card.wallet} number={card.id}></Card>)}
