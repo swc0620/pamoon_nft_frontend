@@ -19,7 +19,7 @@ const LogoText=styled.div`
 function Logo(props) {
   return (
     <LogoText>
-      <img alt='img' src={process.env.PUBLIC_URL+`img/${props.img}.png`}></img>
+      <img alt='img' src={process.env.REACT_APP_PUBLIC_URL+`/img/${props.img}.png`}></img>
       {props.children}
     </LogoText>
   )

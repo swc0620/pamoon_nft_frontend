@@ -51,7 +51,6 @@ function Template() {
             // pamoon contract
             try {
               const imgData = await pamoonContract.methods.tokenURI(cardId.current-4).call();
-              console.log(imgData)
               const walletData = await pamoonContract.methods.ownerOf(cardId.current-4).call();
               const newItem = {
                 id: cardId.current,
