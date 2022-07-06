@@ -5,11 +5,13 @@ import Caver from 'caver-js';
 import PamoonNFTArtifact from "../artifacts/PamoonNFT.json";
 import KIP17 from "../artifacts/KIP17.json";
 
+
 const Wrap = styled.div`
+  width:100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
   padding-top: 15px;
+  justify-content:space-evenly;
 `;
 
 function Template() {
@@ -73,9 +75,9 @@ function Template() {
   }, []);
 
   return (
-    <Wrap>
-      {cards.map((card) => <Card key={card.id} img={card.img} wallet={card.wallet} number={card.id}></Card>)}
-    </Wrap>
+      <Wrap>
+        {cards.map((card) => <Card key={card.id} img={card.img} wallet={card.wallet} number={card.id}></Card>)}
+      </Wrap>
   )
 }
 

@@ -6,14 +6,12 @@ const LogoText=styled.div`
   color:white;
   width:100%;
   text-align:center;
-  height:100px;
-  line-height:100px;
-  font-size:32px;
-  font-weight:700;
+  height:120px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   img{
-    width:36px;
-    height:36px;
+    margin-top:10px;
+    width:240px;
+    height:100px;
     margin-right:10px;
   }
 `
@@ -21,7 +19,7 @@ const LogoText=styled.div`
 function Logo(props) {
   return (
     <LogoText>
-      <img alt='img' src={process.env.PUBLIC_URL+`${props.img}.png`}></img>
+      <img alt='img' src={process.env.PUBLIC_URL+`img/${props.img}.png`}></img>
       {props.children}
     </LogoText>
   )
