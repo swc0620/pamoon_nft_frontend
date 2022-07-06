@@ -17,24 +17,28 @@ const Wrap=styled.div`
   .text{
     text-align:center;
     margin-top:30px;
-    .wallet-address{
+    .token-number{
       font-size:20px;
       font-weight:700;
       padding:5px;
     }
-    .token-number{
+    .wallet-address{
+      font-size:11px;
       color:#6A6A6A;
     }
   }
 `;
 
-function Card() {
+function Card(props) {
+  const img=props.img;
+  const wallet=props.wallet;
+  const number=props.number;
   return (
     <Wrap>
-      <img alt='img' src={process.env.PUBLIC_URL+'img.png'}></img>
+      <img alt='img' src={img}></img>
       <div className='text'>
-        <div className='wallet-address'>0xabcd</div>
-        <div className='token-number'>#1</div>
+        <div className='token-number'>#{number}</div>
+        <div className='wallet-address'>{wallet}</div>
       </div>
     </Wrap>
   )
