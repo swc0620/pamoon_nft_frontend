@@ -33,6 +33,9 @@ function Template() {
         while (true) {
           if (cardId.current < 5) {
             // krafterspace contract
+            console.log(tokens);
+            console.log(cardId.current);
+            console.log(typeof tokens[cardId.current]);
             const imgJSON = await krafterspaceContract.methods.tokenURI(caver.utils.toBN(tokens[cardId.current]).toString()).call();
             console.log(4);
             let imgData;
