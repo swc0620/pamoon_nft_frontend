@@ -27,7 +27,7 @@ function Template() {
         const pamoonContract = new caver.contract(PamoonNFTArtifact.abi, process.env.REACT_APP_PAMOON_NFT_CONTRACT_ADDRESS, { gasPrice: caver.utils.toBN(process.env.REACT_APP_GAS_PRICE).toString() });
         
         // krafterspace contract tokens
-        const tokens = process.env.REACT_APP_TOKEN_IDS.split(', ');
+        const tokens = process.env.REACT_APP_TOKEN_IDS.split(', ').map(id => parseInt(id));
         while (true) {
           if (cardId.current < 5) {
             // krafterspace contract
@@ -50,8 +50,8 @@ function Template() {
           } else {
             // pamoon contract
             try {
-              const imgData = await pamoonContract.methods.tokenURI(caver.utils.toBN((cardId.current-4).toString()).toString()).call();
-              const walletData = await pamoonContract.methods.ownerOf(caver.utils.toBN((cardId.current-4).toString()).toString()).call();
+              const imgData = await pamoonContract.methods.tokenURI(cardId.current-4).call();
+              const walletData = await pamoonContract.methods.ownerOf(cardId.current-4).call();
               const newItem = {
                 id: cardId.current,
                 img: imgData,
