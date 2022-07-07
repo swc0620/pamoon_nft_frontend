@@ -23,8 +23,8 @@ function Template() {
       const cardArray = [];
       try {
         const caver = new Caver(process.env.REACT_APP_CYPRESS_URI);
-        const krafterspaceContract = new caver.contract(KIP17.abi, process.env.REACT_APP_KRAFTERSPACE_CONTRACT_ADDRESS, { gasPrice: caver.utils.toBN(process.env.REACT_APP_GAS_PRICE) });
-        const pamoonContract = new caver.contract(PamoonNFTArtifact.abi, process.env.REACT_APP_PAMOON_NFT_CONTRACT_ADDRESS, { gasPrice: caver.utils.toBN(process.env.REACT_APP_GAS_PRICE) });
+        const krafterspaceContract = new caver.contract(KIP17.abi, process.env.REACT_APP_KRAFTERSPACE_CONTRACT_ADDRESS, { gasPrice: caver.utils.toBN(process.env.REACT_APP_GAS_PRICE).toString() });
+        const pamoonContract = new caver.contract(PamoonNFTArtifact.abi, process.env.REACT_APP_PAMOON_NFT_CONTRACT_ADDRESS, { gasPrice: caver.utils.toBN(process.env.REACT_APP_GAS_PRICE).toString() });
         
         // krafterspace contract tokens
         const tokens = process.env.REACT_APP_TOKEN_IDS.split(', ').map(id => parseInt(id));
