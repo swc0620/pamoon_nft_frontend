@@ -31,7 +31,7 @@ function Template() {
         while (true) {
           if (cardId.current < 5) {
             // krafterspace contract
-            const imgJSON = await krafterspaceContract.methods.tokenURI(tokens[cardId.current]).call();
+            const imgJSON = await krafterspaceContract.methods.tokenURI(caver.utils.toBN(tokens[cardId.current]).toString()).call();
             let imgData;
             await fetch(imgJSON)
               .then((result) => result.json())
@@ -40,7 +40,7 @@ function Template() {
               })
               .catch((err) => console.error(err));
                         
-            const walletData = await krafterspaceContract.methods.ownerOf(tokens[cardId.current]).call();
+            const walletData = await krafterspaceContract.methods.ownerOf(caver.utils.toBN(tokens[cardId.current]).toString()).call();
             const newItem = {
               id: cardId.current,
               img: imgData,
@@ -50,8 +50,8 @@ function Template() {
           } else {
             // pamoon contract
             try {
-              const imgData = await pamoonContract.methods.tokenURI(cardId.current-4).call();
-              const walletData = await pamoonContract.methods.ownerOf(cardId.current-4).call();
+              const imgData = await pamoonContract.methods.tokenURI(caver.utils.toBN(cardId.current-4).toString()).call();
+              const walletData = await pamoonContract.methods.ownerOf(caver.utils.toBN(cardId.current-4).toString()).call();
               const newItem = {
                 id: cardId.current,
                 img: imgData,
